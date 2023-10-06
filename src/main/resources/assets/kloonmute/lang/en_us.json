@@ -1,0 +1,8 @@
+{
+  "key.kloonmute.keybindname": "Toggle Mute",
+  "key.kloonmute.keybindcategory": "KloonMute",
+
+  "com.kloonmute.muted_game": "Muted the game!",
+  "com.kloonmute.unmuted": "Un-muted!",
+  "com.kloonmute.already_muted": "Game already muted!"
+}
