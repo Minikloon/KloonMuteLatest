@@ -109,11 +109,14 @@ public class KloonMute {
         double soundLevel = masterVolumeOption.get();
         LOGGER.info("Sound level: " + soundLevel);
         if (soundLevel == 0) {
-            masterVolumeOption.set(KloonMute.INSTANCE.recordedSoundLevel);
-            minecraft.player.sendSystemMessage(Component.translatable("com.kloonmute.unmuted").withStyle(ChatFormatting.LIGHT_PURPLE));
+            if (KloonMute.INSTANCE.recordedSoundLevel == 0) {
+                minecraft.player.sendSystemMessage(Component.translatable("com.kloonmute.could_not_unmute").withStyle(ChatFormatting.RED));
+            } else {
+                masterVolumeOption.set(KloonMute.INSTANCE.recordedSoundLevel);
+                minecraft.player.sendSystemMessage(Component.translatable("com.kloonmute.unmuted").withStyle(ChatFormatting.DARK_GRAY));
+            }
         } else {
-            String messageKey = KloonMute.INSTANCE.recordedSoundLevel == 0 ? "com.kloonmute.already_muted" : "com.kloonmute.muted_game";
-            minecraft.player.sendSystemMessage(Component.translatable(messageKey).withStyle(ChatFormatting.LIGHT_PURPLE));
+            minecraft.player.sendSystemMessage(Component.translatable("com.kloonmute.muted_game").withStyle(ChatFormatting.LIGHT_PURPLE));
 
             KloonMute.INSTANCE.recordedSoundLevel = soundLevel;
             masterVolumeOption.set(0.0);
